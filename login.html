@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | SpinRecords Admin</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /*Colores para el login */
+        body {
+            background-color: #E3F2FD; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .login-container {
+            max-width: 400px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .logo {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .logo img {
+            max-width: 120px; 
+            border-radius: 50%;
+        }
+        .form-title {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #0D47A1; 
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <!-- Imagen del SpinRecords para que se vea bonito -->
+        <div class="logo">
+            <img src="assets/images/favicon.png" alt="Spin Records Logo"> 
+        </div>
+        <h3 class="form-title">SpinRecords Admin</h3>
+        <form id="loginForm">
+            <div class="mb-3">
+                <label for="username" class="form-label">Admin o empleado</label>
+                <input type="text" class="form-control" id="username" placeholder="Ingresa tu usuario" required>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Contraseña</label>
+                <input type="password" class="form-control" id="password" placeholder="Ingresa tu contraseña" required>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Iniciar Sesión</button>
+        </form>
+        <div id="loginError" class="alert alert-danger mt-3 d-none" role="alert">
+            Usuario o contraseña incorrectos.
+        </div>
+    </div>
+
+    <script src="login.js"></script>
+</body>
+</html>

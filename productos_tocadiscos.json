@@ -1,0 +1,140 @@
+{
+    "productos": [
+        {
+            "id": 1,
+            "title": "Modern Life is Rubbish",
+            "artist": "Blur",
+            "stock": "300",
+            "imageUrl": "assets/images/products/MLisR.jpg",
+            "price": "$200.00",
+            "genre": "Britpop"
+
+        },
+        {
+           "id": 2,
+           "title": "Humbug",
+           "artist": "Arctic Monkeys",
+           "stock": "400",
+           "imageUrl": "assets/images/products/Humbug.jpg",
+           "price": "$250.00",
+           "genre": "Rock"
+        },
+        {
+            "id": 3,
+            "title": "Blur",
+            "artist": "Blur",
+           "stock": "500",
+            "imageUrl": "assets/images/products/B.jpg",
+            "price": "$300.00",
+            "genre": "Alternative"
+        },
+        {
+            "id": 4,
+            "title": "Gorillaz",
+            "artist": "Gorillaz",
+           "stock": "200",
+            "imageUrl": "assets/images/products/GG.jpg",
+            "price": "$300.00",
+            "genre": "Alternative"
+        },
+        {
+           "id": 5,
+           "title": "The New Abnormal",
+           "artist": "The Strokes",
+           "stock": "230",
+           "imageUrl": "assets/images/products/TNA.jpg",
+           "price": "$300.00",
+           "genre": "Rock"
+        },
+        {
+            "id": 6,
+            "title": "Favourite Worst Nightmare",
+            "artist": "Arctic Monkeys",
+            "stock": "210",
+            "imageUrl": "assets/images/products/FWNN.jpg",
+            "price": "$300.00",
+            "genre": "Rock"
+        },
+        {
+            "id": 7,
+            "title": "Revolver",
+            "artist": "The Beatles",
+            "stock": "123",
+            "imageUrl": "assets/images/products/rev.jpg",
+            "price": "$300.00",
+            "genre": "Rock"
+        },
+        {
+            "id": 8,
+            "title": "Black",
+            "artist": "Pearl Jam",
+            "stock": "134",
+            "imageUrl": "assets/images/black/.jpg",
+            "price": "$250.00",
+            "genre": "Heavy-metal"
+        },
+        {
+            "id": 9,
+            "title": "Black Sabbath",
+            "artist": "Black Sabbath",
+            "stock": "36",
+            "imageUrl": "assets/images/products/black sabbath.jpg",
+            "price": "$250.00",
+            "genre": "Grunge"
+        },
+        {
+            "id": 10,
+            "title": "Romance",
+            "artist": "Fontainces D.C.",
+            "stock": "39",
+            "imageUrl": "assets/images/products/Romance.jpg",
+            "price": "$350.00",
+            "genre": "Post-Punk"
+        },
+        {
+            "id": 11,
+            "title": "Ok Computer",
+            "artist": "Radiohead",
+            "stock": "135",
+            "imageUrl": "assets/images/products/OKC.jpg",
+            "price": "$300.00",
+            "genre": "Alternative"
+        },
+        {
+            "id": 12,
+            "title": "13",
+            "artist": "Blur",
+            "stock": "131",
+            "imageUrl": "assets/images/products/13B.jpg",
+            "price": "$250.00",
+            "genre": "Alternative"
+        }
+    ],
+    "tocadiscos": [
+        {
+            "id": 1,
+            "name": "Tocadiscos Vintage",
+            "brand": "Sony",
+            "price": "$1150",
+            "type": "Manual",
+            "imageUrl": "assets/images/products/T.jpg"
+        },
+        {
+            "id": 2,
+            "name": "Tocadiscos Moderno",
+            "brand": "Audio-Technica",
+            "price": "$1300",
+            "type": "Automático",
+           "imageUrl": "assets/images/products/TDS.jpg"
+        },
+        {
+            "id": 3,
+            "name": "Tocadiscos Clásico",
+            "brand": "Technics",
+            "price": "$1500",
+            "type": "Semi-automático",
+            "imageUrl": "assets/images/products/TTTT.jpg"
+        }
+       
+    ]
+}
