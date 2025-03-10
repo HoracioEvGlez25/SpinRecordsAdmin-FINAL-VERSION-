@@ -154,6 +154,23 @@
           <span class="divider"><hr /></span>
 
           <li class="nav-item">
+            <a href="Supplierorders.html">
+              <span class="icon">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M1.66666 4.16667C1.66666 3.24619 2.41285 2.5 3.33332 2.5H16.6667C17.5872 2.5 18.3333 3.24619 18.3333 4.16667V9.16667C18.3333 10.0872 17.5872 10.8333 16.6667 10.8333H3.33332C2.41285 10.8333 1.66666 10.0872 1.66666 9.16667V4.16667Z" />
+                  <path
+                    d="M1.875 13.75C1.875 13.4048 2.15483 13.125 2.5 13.125H17.5C17.8452 13.125 18.125 13.4048 18.125 13.75C18.125 14.0952 17.8452 14.375 17.5 14.375H2.5C2.15483 14.375 1.875 14.0952 1.875 13.75Z" />
+                  <path
+                    d="M2.5 16.875C2.15483 16.875 1.875 17.1548 1.875 17.5C1.875 17.8452 2.15483 18.125 2.5 18.125H17.5C17.8452 18.125 18.125 17.8452 18.125 17.5C18.125 17.1548 17.8452 16.875 17.5 16.875H2.5Z" />
+                </svg>
+              </span>
+              <span class="text">Pedidos</span>
+            </a>
+          </li>
+          <span class="divider"><hr /></span>
+
+          <li class="nav-item">
             <a href="notification.html">
               <span class="icon">
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -424,67 +441,154 @@
             }
         </style>
     </head>
+
     <body>
-        <div class="container">
-            <br>
-            <h2>Agregar Proveedor</h2>
-            <form id="formProveedor">
-                <input type="text" id="nombreProveedor" placeholder="Nombre del proveedor" required>
-                <input type="email" id="contactoProveedor" placeholder="Correo de contacto" required>
-                <button type="submit">Agregar</button>
-            </form> 
-            <br>
-            <h2>Realizar Pedido</h2>
-            <form id="formPedido">
-                <select id="proveedorPedido"></select>
-                <input type="text" id="productoPedido" placeholder="Producto y cantidad (Ejemplo: 1-5)" required>
-                <button type="submit">Realizar Pedido</button>
-            </form>
-        </div>
-    
-        <script>
-            const proveedores = [];
-            const productos = [];
-    
-            document.getElementById('formProveedor').addEventListener('submit', function(event) {
-                event.preventDefault();
-                const nombre = document.getElementById('nombreProveedor').value;
-                const contacto = document.getElementById('contactoProveedor').value;
-                proveedores.push({ nombre, contacto });
-                actualizarSelectProveedores();
-                alert(`Proveedor agregado: ${nombre}`);
-            });
-    
-            document.getElementById('formProducto').addEventListener('submit', function(event) {
-                event.preventDefault();
-                const nombre = document.getElementById('nombreProducto').value;
-                const stock = document.getElementById('stockProducto').value;
-                const precio = document.getElementById('precioProducto').value;
-                const proveedor = document.getElementById('proveedorProducto').value;
-                productos.push({ nombre, stock, precio, proveedor });
-                alert(`Producto agregado: ${nombre}`);
-            });
-    
-            document.getElementById('formPedido').addEventListener('submit', function(event) {
-                event.preventDefault();
-                const proveedor = document.getElementById('proveedorPedido').value;
-                const productosPedido = document.getElementById('productoPedido').value;
-                alert(`Pedido realizado con ${proveedor}: ${productosPedido}`);
-            });
-    
-            function actualizarSelectProveedores() {
-                const selectProducto = document.getElementById('proveedorProducto');
-                const selectPedido = document.getElementById('proveedorPedido');
-                selectProducto.innerHTML = '';
-                selectPedido.innerHTML = '';
-                proveedores.forEach(proveedor => {
-                    let option = new Option(proveedor.nombre, proveedor.nombre);
-                    selectProducto.add(option);
-                    selectPedido.add(new Option(proveedor.nombre, proveedor.nombre));
-                });
-            }
-        </script>
-                
+      <div class="container">
+          <h2>Agregar Proveedor</h2>
+          <form id="formProveedor">
+              <input type="text" id="nombreProveedor" placeholder="Nombre del proveedor" required>
+              <input type="email" id="contactoProveedor" placeholder="Correo de contacto" required>
+              <button type="submit">Agregar</button>
+          </form>
+          <br>
+          <h2>Realizar Pedido</h2>
+          <form id="formPedido">
+              <input type="text" id="proveedorPedido" placeholder="Nombre del Proveedor" required>
+              <input type="text" id="productoPedido" placeholder="Nombre del Producto" required>
+              <input type="number" id="cantidadPedido" placeholder="Cantidad" required>
+              <button type="submit">Realizar Pedido</button>
+          </form>
+      </div>
+  
+      <div id="modal" class="modal">
+          <div class="modal-content">
+              <h3>Confirmación de Pedido</h3>
+              <p id="detallePedido"></p>
+              <button onclick="cerrarModal()">Confirmar</button>
+          </div>
+      </div>
+  
+      <style>
+          /* Modal Estilos */
+          .modal {
+              display: none;
+              position: fixed;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              background: rgba(0, 0, 0, 0.7); /* Fondo oscuro */
+              justify-content: center;
+              align-items: center;
+              z-index: 1000; /* Asegura que el modal esté por encima de otros elementos */
+          }
+  
+          .modal-content {
+              background: #fff;
+              padding: 30px;
+              width: 80%;
+              max-width: 400px;
+              border-radius: 8px;
+              box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+              text-align: center;
+              animation: fadeIn 0.3s ease-out;
+          }
+  
+          .modal h3 {
+              margin-bottom: 15px;
+              color: #333;
+              font-size: 22px;
+          }
+  
+          .modal p {
+              font-size: 16px;
+              margin-bottom: 20px;
+              color: #555;
+          }
+  
+          .modal button {
+              background-color: #28a745;
+              color: white;
+              padding: 10px 20px;
+              border: none;
+              border-radius: 5px;
+              cursor: pointer;
+              font-size: 16px;
+              transition: background-color 0.3s ease;
+          }
+  
+          .modal button:hover {
+              background-color: #218838;
+          }
+  
+             @keyframes fadeIn {
+              from {
+                  opacity: 0;
+                  transform: scale(0.8);
+              }
+              to {
+                  opacity: 1;
+                  transform: scale(1);
+              }
+          }
+      </style>
+  
+      <script>
+          const proveedores = [];
+  
+          document.getElementById('formProveedor').addEventListener('submit', function(event) {
+              event.preventDefault();
+              const nombre = document.getElementById('nombreProveedor').value;
+              const contacto = document.getElementById('contactoProveedor').value;
+  
+              proveedores.push({ nombre, contacto });
+  
+              actualizarListaProveedores();
+              document.getElementById('formProveedor').reset();
+          });
+  
+          document.getElementById('formPedido').addEventListener('submit', function(event) {
+              event.preventDefault();
+              const proveedor = document.getElementById('proveedorPedido').value.trim();
+              const producto = document.getElementById('productoPedido').value.trim();
+              const cantidad = document.getElementById('cantidadPedido').value;
+  
+              if (!proveedor || !producto || cantidad <= 0) {
+                  alert('Por favor, completa todos los campos correctamente.');
+                  return;
+              }
+  
+              mostrarModal(proveedor, producto, cantidad);
+              document.getElementById('formPedido').reset();
+          });
+  
+          function actualizarListaProveedores() {
+              const lista = document.getElementById('listaProveedores');
+              lista.innerHTML = "";
+              proveedores.forEach(proveedor => {
+                  const li = document.createElement('li');
+                  li.textContent = `${proveedor.nombre} - ${proveedor.contacto}`;
+                  lista.appendChild(li);
+              });
+          }
+  
+          function mostrarModal(proveedor, producto, cantidad) {
+              document.getElementById('detallePedido').innerText = `Pedido realizado:\n ${cantidad} x ${producto}\nProveedor: ${proveedor}`;
+              document.getElementById('modal').style.display = 'flex';
+          }
+  
+          function cerrarModal() {
+              document.getElementById('modal').style.display = 'none';
+          }
+  
+          document.getElementById('modal').addEventListener('click', function(event) {
+              if (event.target === this) {
+                  cerrarModal();
+              }
+          });
+      </script>
+  </body>
+        
     <script src="assets/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/Chart.min.js"></script>
     <script src="assets/js/dynamic-pie-chart.js"></script>
