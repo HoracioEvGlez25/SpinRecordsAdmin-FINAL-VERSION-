@@ -442,14 +442,14 @@
                 <a href="#0" class="content">
                   <h6>Stock agotado: Blur - Parklife</h6>
                   <p class="text-sm text-gray">
-                    El álbum "Parklife" de Blur se ha agotado. Considera reabastecerlo pronto debido a su alta demanda.
+                    El álbum "Parklife" de Blur se ha agotado. Necesito un embarque de 10 piezas para llenar mi Stock.
                   </p>
                   <span class="text-sm text-medium text-gray">Hace 25 min</span>
                 </a>
               </div>
               <div class="action-buttons">
-                <button class="btn btn-success" onclick="location.href='Supplierorders.html'">Realizar pedido</button>
-                <button class="btn btn-dark">Modificar</button>
+                <button class="btn btn-success" id="realizar-pedido-btn">Realizar pedido</button>
+                <button class="btn btn-dark" onclick="location.href='Supplierorders.html'">Modificar</button>
                 <button class="btn btn-dark">Cancelar</button>
               </div>
             </div>
@@ -473,11 +473,44 @@
                 </a>
               </div>
               <div class="action-buttons">
-                <button class="btn btn-success" onclick="location.href='Supplierorders.html'">Realizar pedido</button>
-                <button class="btn btn-dark">Modificar</button>
+                <button class="btn btn-success" id="realizar-pedido-btn2">Realizar pedido</button>
+                <button class="btn btn-dark" onclick="location.href='Supplierorders.html'">Modificar</button>
                 <button class="btn btn-dark">Cancelar</button>
               </div>
             </div>
+
+            
+            <script>
+              document.getElementById('realizar-pedido-btn').addEventListener('click', function() {
+                const contenido = `Stock agotado: Blur - Parklife El álbum "Parklife" de Blur se ha agotado.
+                 Necesito un embarque de 10 piezas para llenar mi Stock. Hace 25 min`;
+            
+                const blob = new Blob([contenido], { type: 'text/plain' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'pedido.txt';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+              });
+
+              document.getElementById('realizar-pedido-btn2').addEventListener('click', function() {
+                const contenido = `Solo quedan 5 copias del álbum "AM" de Arctic Monkeys en stock. 
+                Solicito de la manera mas atenta otro embarque con 10 unidades para copletar stock`;
+            
+                const blob = new Blob([contenido], { type: 'text/plain' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'pedido.txt';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+              });
+            </script>
             
             <div class="single-notification">
               <div class="checkbox">
@@ -492,14 +525,14 @@
                 <a href="#0" class="content">
                   <h6>Alta demanda: Radiohead - OK Computer</h6>
                   <p class="text-sm text-gray">
-                    El álbum "OK Computer" de Radiohead ha tenido un incremento en ventas esta semana. Se sugiere aumentar el inventario.
+                    El álbum "OK Computer" de Radiohead ha tenido un incremento en ventas esta semana. Se solicita un ebarque de 10 unidades para Stock
                   </p>
                   <span class="text-sm text-medium text-gray">Hace 46 min</span>
                 </a>
               </div>
               <div class="action-buttons">
-                <button class="btn btn-success" onclick="location.href='Supplierorders.html'">Realizar pedido</button>
-                <button class="btn btn-dark">Modificar</button>
+                <button class="btn btn-success" id="realizar-pedido-btn3">Realizar pedido</button>
+                <button class="btn btn-dark" onclick="location.href='Supplierorders.html'">Modificar</button>
                 <button class="btn btn-dark">Cancelar</button>
               </div>
             </div>
@@ -517,17 +550,49 @@
                 <a href="#0" class="content">
                   <h6>Últimas unidades: The Strokes - Is This It</h6>
                   <p class="text-sm text-gray">
-                    Solo quedan 3 unidades en stock del álbum "Is This It" de The Strokes. Se recomienda reabastecer pronto.
+                    Solo quedan 3 unidades en stock del álbum "Is This It" de The Strokes. Se solicita un ebarque de 7 unidades para stock.
                   </p>
                   <span class="text-sm text-medium text-gray">Hace 1h</span>
                 </a>
               </div>
               <div class="action-buttons">
-                <button class="btn btn-success" onclick="location.href='Supplierorders.html'">Realizar pedido</button>
-                <button class="btn btn-dark">Modificar</button>
+                <button class="btn btn-success" id="realizar-pedido-btn4">Realizar pedido</button>
+                <button class="btn btn-dark" onclick="location.href='Supplierorders.html'">Modificar</button>
                 <button class="btn btn-dark">Cancelar</button>
               </div>
             </div>
+
+            <script>
+              document.getElementById('realizar-pedido-btn3').addEventListener('click', function() {
+                const contenido = `El álbum "OK Computer" de Radiohead ha tenido un incremento en ventas esta semana. 
+                Se solicita un ebarque de 10 unidades para Stock`;
+            
+                const blob = new Blob([contenido], { type: 'text/plain' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'pedido.txt';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+              });
+
+              document.getElementById('realizar-pedido-btn4').addEventListener('click', function() {
+                const contenido = `Solo quedan 3 unidades en stock del álbum "Is This It" de The Strokes. Se solicita un ebarque de 7 unidades para stock.`;
+            
+                const blob = new Blob([contenido], { type: 'text/plain' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'pedido.txt';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+              });
+
+            </script>
             
             <div class="single-notification">
               <div class="checkbox">
