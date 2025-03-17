@@ -390,7 +390,6 @@
       </div>
     </header>
 
-
     <div class="notification-wrapper">
       <div class="container-fluid">
         <div class="title-wrapper pt-30">
@@ -444,47 +443,126 @@
           }
 
           button {
-            background-color: #218037;
+            background-color: #212e80;
             color: white;
             border: none;
             cursor: pointer;
           }
 
           button:hover {
-            background-color: #218838;
+            background-color: #216288;
           }
         </style>
         </head>
 
         <body>
           <div class="container">
-            <h2>Agregar Proveedor</h2>
-            <form id="formProveedor">
-              <input type="text" id="nombreProveedor" placeholder="Nombre del proveedor" required>
-              <input type="email" id="contactoProveedor" placeholder="Correo de contacto" required>
-              <button type="submit">Agregar</button>
-            </form>
-            <br>
-            <h2>Realizar Pedido</h2>
-            <form id="formPedido">
-              <input type="text" id="proveedorPedido" placeholder="Nombre del Proveedor" required>
-              <input type="text" id="productoPedido" placeholder="Nombre del Producto" required>
-              <input type="number" id="cantidadPedido" placeholder="Cantidad" required>
-              <button type="submit">Realizar Pedido</button>
-            </form>
+            <style>
+              .container {
+                width: 100%;
+                margin: auto;
+                padding: 20px;
+                font-family: Arial, sans-serif;
+                background: #ffffff;
+                box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+                border-radius: 10px;
+              }
+              
+              .section {
+                text-align: center;
+                margin-bottom: 30px;
+                padding: 20px;
+                border-bottom: 2px solid #ddd;
+              }
+          
+              .image-banner {
+              width: 100%;
+              height: 190px; 
+              object-fit: cover;
+              display: block;
+            }
+          
+              h2 {
+                color: #333;
+                margin-bottom: 10px;
+              }
+          
+              form {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+              }
+          
+              input, select, button {
+                width: 80%;
+                padding: 10px;
+                margin: 8px 0;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                font-size: 16px;
+              }
+          
+              button {
+                background-color: #0c345f;
+                color: white;
+                cursor: pointer;
+                border: none;
+                transition: background 0.3s ease;
+              }
+          
+              button:hover {
+                background-color: #0d325a;
+              }
+            </style>
+          
+            <!-- Agregar Proveedor -->
+            <div class="section">
+              <img src="assets/images/products/PROVV.jpg" alt="Proveedor" class="image-banner"> <!-- Espacio para imagen -->
+              <br>
+              <h2>Agregar Proveedor</h2>
+              <form id="formProveedor">
+                <input type="text" id="nombreProveedor" placeholder="Nombre del proveedor" required>
+                <input type="email" id="contactoProveedor" placeholder="Correo de contacto" required>
+                <button type="submit">Agregar</button>
+              </form>
+            </div>
+          
+            <!-- Realizar Pedido -->
+            <div class="section">
+              <img src="assets/images/products/Vff.jpeg" alt="Pedido" class="image-banner"> <!-- Espacio para imagen -->
+              <br>
+              <h2>Realizar Pedido</h2>
+              <form id="formPedido">
+                <select id="proveedorPedido" required>
+                  <option value="">Seleccione un proveedor</option>
+                </select>
+                <input type="text" id="productoPedido" placeholder="Nombre del Producto" required>
+                <input type="number" id="cantidadPedido" placeholder="Cantidad" required>
+                <button type="submit">Realizar Pedido</button>
+              </form>
+            </div>
           </div>
+          
 
           <div id="modal" class="modal">
             <div class="modal-content">
               <h3>Confirmación de Pedido</h3>
+              <br>
               <p id="detallePedido"></p>
+              <br>
               <button onclick="confirmarPedido()">Confirmar</button>
+              <button onclick="cancelarPedido()">Cancelar</button>
+            </div>
+          </div>       
+          <div id="cancelacionModal" class="cancelacion-modal">
+            <div class="cancelacion-content">
+              <span class="cerrar" onclick="cerrarCancelacion()">&times;</span>
+              <p>Tu pedido ha sido cancelado.</p>
             </div>
           </div>
-
+        
           <style>
-            /* Modal Estilos */
-            .modal {
+            .modal, .cancelacion-modal {
               display: none;
               position: fixed;
               top: 0;
@@ -496,8 +574,8 @@
               align-items: center;
               z-index: 1000;
             }
-
-            .modal-content {
+        
+            .modal-content, .cancelacion-content {
               background: #fff;
               padding: 30px;
               width: 80%;
@@ -506,14 +584,21 @@
               text-align: center;
               animation: fadeIn 0.3s ease-out;
             }
-
-            .modal h3 {
-              margin-bottom: 15px;
-              font-size: 22px;
+        
+            .cancelacion-content {
+              position: relative;
             }
-
+        
+            .cerrar {
+              position: absolute;
+              top: 10px;
+              right: 15px;
+              font-size: 24px;
+              cursor: pointer;
+            }
+        
             .modal button {
-              background-color: #28a745;
+              background-color: #212e80;
               color: white;
               padding: 10px 20px;
               border: none;
@@ -521,95 +606,114 @@
               font-size: 16px;
               transition: background-color 0.3s ease;
             }
-
+        
             .modal button:hover {
-              background-color: #218838;
+              background-color: #212e80;
             }
-
+        
             @keyframes fadeIn {
               from {
                 opacity: 0;
                 transform: scale(0.8);
               }
-
               to {
                 opacity: 1;
                 transform: scale(1);
               }
             }
           </style>
-
+        
           <script>
-            const proveedores = [];
-            let pedidoActual = {}; // Objeto para almacenar el pedido antes de confirmar
-
-            // Agregar proveedor
+            const proveedores = [
+              { nombre: "Distribuidora Tech", contacto: "contacto@tech.com", calificacion: 4.8 },
+              { nombre: "Electro Suministros", contacto: "info@electrosum.com", calificacion: 4.5 },
+              { nombre: "Innovatec", contacto: "ventas@innovatec.com", calificacion: 4.2 },
+              { nombre: "Componentes Plus", contacto: "support@complus.com", calificacion: 4.0 },
+              { nombre: "Mayorista Global", contacto: "global@mayorista.com", calificacion: 3.8 }
+            ];
+        
+            let pedidoActual = {}; 
+        
+            function cargarProveedores() {
+              const select = document.getElementById('proveedorPedido');
+              select.innerHTML = '<option value="">Seleccione un proveedor</option>';
+              proveedores.forEach(proveedor => {
+                const option = document.createElement('option');
+                option.value = proveedor.nombre;
+                option.textContent = `${proveedor.nombre} - ★${proveedor.calificacion}`;
+                select.appendChild(option);
+              });
+            }
+        
+            document.addEventListener('DOMContentLoaded', cargarProveedores);
+        
             document.getElementById('formProveedor').addEventListener('submit', function (event) {
               event.preventDefault();
               const nombre = document.getElementById('nombreProveedor').value.trim();
               const contacto = document.getElementById('contactoProveedor').value.trim();
-
+        
               if (!nombre || !contacto) {
                 alert("Por favor, completa los campos del proveedor.");
                 return;
               }
-
-              proveedores.push({ nombre, contacto });
-              console.log("Proveedor agregado:", nombre, contacto);
+        
+              proveedores.push({ nombre, contacto, calificacion: 4.0 });
               document.getElementById('formProveedor').reset();
+              cargarProveedores();
             });
-
-            // Realizar pedido
+        
             document.getElementById('formPedido').addEventListener('submit', function (event) {
               event.preventDefault();
-              const proveedor = document.getElementById('proveedorPedido').value.trim();
+              const proveedor = document.getElementById('proveedorPedido').value;
               const producto = document.getElementById('productoPedido').value.trim();
               const cantidad = parseInt(document.getElementById('cantidadPedido').value.trim(), 10);
-
+        
               if (!proveedor || !producto || isNaN(cantidad) || cantidad <= 0) {
                 alert("Por favor, completa todos los campos correctamente.");
                 return;
               }
-
+        
               pedidoActual = { proveedor, producto, cantidad };
               mostrarModal(proveedor, producto, cantidad);
             });
-
-            // Mostrar modal de confirmación
+        
             function mostrarModal(proveedor, producto, cantidad) {
               document.getElementById('detallePedido').textContent =
                 `Proveedor: ${proveedor}\nProducto: ${producto}\nCantidad: ${cantidad}`;
               document.getElementById('modal').style.display = 'flex';
             }
-
-            // Confirmar pedido y generar archivo .txt
+        
             function confirmarPedido() {
-              if (!pedidoActual.proveedor || !pedidoActual.producto || !pedidoActual.cantidad) {
-                alert("No hay un pedido válido para confirmar.");
-                return;
-              }
-
               generarTxt(pedidoActual.proveedor, pedidoActual.producto, pedidoActual.cantidad);
               document.getElementById('modal').style.display = 'none';
             }
-
-            // Generar y descargar archivo .txt
-            function generarTxt(proveedor, producto, cantidad) {
-              const contenido = `Proveedor: ${proveedor}\nProducto: ${producto}\nCantidad: ${cantidad}`;
-              const blob = new Blob([contenido], { type: "text/plain" });
-              const enlace = document.createElement("a");
-              enlace.href = URL.createObjectURL(blob);
-              enlace.download = `Pedido_${proveedor}.txt`;
-              document.body.appendChild(enlace);
-              enlace.click();
-              document.body.removeChild(enlace);
-              console.log("✅ Archivo .txt generado correctamente.");
+        
+            function cancelarPedido() {
+              document.getElementById('modal').style.display = 'none';
+              document.getElementById('cancelacionModal').style.display = 'flex';
+              document.getElementById('formPedido').reset();
             }
+        
+            function cerrarCancelacion() {
+              document.getElementById('cancelacionModal').style.display = 'none';
+            }
+        
+            function generarTxt(proveedor, producto, cantidad) {
+            const contenido = `Buenas tardes ${proveedor},\n\nPor medio del siguiente correo le solicito ${cantidad} del producto ${producto}, por favor.\n\nAtentamente,\n SpinRecords`;
+  
+            const blob = new Blob([contenido], { type: "text/plain" });
+            const enlace = document.createElement("a");
+            enlace.href = URL.createObjectURL(blob);
+           enlace.download = `Pedido_${proveedor}.txt`;
+           document.body.appendChild(enlace);
+           enlace.click();
+           document.body.removeChild(enlace);
+          }
+
           </script>
         </body>
-
-
-        <script src="assets/js/bootstrap.bundle.min.js"></script>
+        
+         <script src="assets/js/bootstrap.bundle.min.js"></script>
         <script src="assets/js/Chart.min.js"></script>
         <script src="assets/js/dynamic-pie-chart.js"></script>
         <script src="assets/js/moment.min.js"></script>

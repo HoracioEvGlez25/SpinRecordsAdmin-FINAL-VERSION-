@@ -153,24 +153,7 @@
             </a>
           </li>
           <span class="divider"><hr /></span>
-
-<li class="nav-item">
-            <a href="Supplierorders.html">
-              <span class="icon">
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M1.66666 4.16667C1.66666 3.24619 2.41285 2.5 3.33332 2.5H16.6667C17.5872 2.5 18.3333 3.24619 18.3333 4.16667V9.16667C18.3333 10.0872 17.5872 10.8333 16.6667 10.8333H3.33332C2.41285 10.8333 1.66666 10.0872 1.66666 9.16667V4.16667Z" />
-                  <path
-                    d="M1.875 13.75C1.875 13.4048 2.15483 13.125 2.5 13.125H17.5C17.8452 13.125 18.125 13.4048 18.125 13.75C18.125 14.0952 17.8452 14.375 17.5 14.375H2.5C2.15483 14.375 1.875 14.0952 1.875 13.75Z" />
-                  <path
-                    d="M2.5 16.875C2.15483 16.875 1.875 17.1548 1.875 17.5C1.875 17.8452 2.15483 18.125 2.5 18.125H17.5C17.8452 18.125 18.125 17.8452 18.125 17.5C18.125 17.1548 17.8452 16.875 17.5 16.875H2.5Z" />
-                </svg>
-              </span>
-              <span class="text">Pedidos</span>
-            </a>
-          </li>
-          <span class="divider"><hr /></span>
-
+          
           <li class="nav-item">
             <a href="Supplierorders.html">
               <span class="icon">
@@ -448,12 +431,11 @@
                 </a>
               </div>
               <div class="action-buttons">
-                <button class="btn btn-success" id="realizar-pedido-btn">Realizar pedido</button>
+                <button class="btn btn-dark" onclick="realizarPedido('Blur - Parklife', 10)">Realizar pedido</button>
                 <button class="btn btn-dark" onclick="location.href='Supplierorders.html'">Modificar</button>
-                <button class="btn btn-dark">Cancelar</button>
               </div>
             </div>
-            
+          
             <div class="single-notification">
               <div class="checkbox">
                 <div class="form-check checkbox-style">
@@ -473,45 +455,11 @@
                 </a>
               </div>
               <div class="action-buttons">
-                <button class="btn btn-success" id="realizar-pedido-btn2">Realizar pedido</button>
+                <button class="btn btn-dark" onclick="realizarPedido('Arctic Monkeys - AM', 5)">Realizar pedido</button>
                 <button class="btn btn-dark" onclick="location.href='Supplierorders.html'">Modificar</button>
-                <button class="btn btn-dark">Cancelar</button>
               </div>
             </div>
-
-            
-            <script>
-              document.getElementById('realizar-pedido-btn').addEventListener('click', function() {
-                const contenido = `Stock agotado: Blur - Parklife El álbum "Parklife" de Blur se ha agotado.
-                 Necesito un embarque de 10 piezas para llenar mi Stock. Hace 25 min`;
-            
-                const blob = new Blob([contenido], { type: 'text/plain' });
-                const url = URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = 'pedido.txt';
-                document.body.appendChild(a);
-                a.click();
-                document.body.removeChild(a);
-                URL.revokeObjectURL(url);
-              });
-
-              document.getElementById('realizar-pedido-btn2').addEventListener('click', function() {
-                const contenido = `Solo quedan 5 copias del álbum "AM" de Arctic Monkeys en stock. 
-                Solicito de la manera mas atenta otro embarque con 10 unidades para copletar stock`;
-            
-                const blob = new Blob([contenido], { type: 'text/plain' });
-                const url = URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = 'pedido.txt';
-                document.body.appendChild(a);
-                a.click();
-                document.body.removeChild(a);
-                URL.revokeObjectURL(url);
-              });
-            </script>
-            
+          
             <div class="single-notification">
               <div class="checkbox">
                 <div class="form-check checkbox-style">
@@ -525,18 +473,17 @@
                 <a href="#0" class="content">
                   <h6>Alta demanda: Radiohead - OK Computer</h6>
                   <p class="text-sm text-gray">
-                    El álbum "OK Computer" de Radiohead ha tenido un incremento en ventas esta semana. Se solicita un ebarque de 10 unidades para Stock
+                    El álbum "OK Computer" de Radiohead ha tenido un incremento en ventas esta semana. Se solicita un embarque de 10 unidades para Stock.
                   </p>
                   <span class="text-sm text-medium text-gray">Hace 46 min</span>
                 </a>
               </div>
               <div class="action-buttons">
-                <button class="btn btn-success" id="realizar-pedido-btn3">Realizar pedido</button>
+                <button class="btn btn-dark" onclick="realizarPedido('Radiohead - OK Computer', 10)">Realizar pedido</button>
                 <button class="btn btn-dark" onclick="location.href='Supplierorders.html'">Modificar</button>
-                <button class="btn btn-dark">Cancelar</button>
               </div>
             </div>
-            
+          
             <div class="single-notification">
               <div class="checkbox">
                 <div class="form-check checkbox-style">
@@ -550,50 +497,17 @@
                 <a href="#0" class="content">
                   <h6>Últimas unidades: The Strokes - Is This It</h6>
                   <p class="text-sm text-gray">
-                    Solo quedan 3 unidades en stock del álbum "Is This It" de The Strokes. Se solicita un ebarque de 7 unidades para stock.
+                    Solo quedan 3 unidades en stock del álbum "Is This It" de The Strokes. Se solicita un embarque de 7 unidades para stock.
                   </p>
                   <span class="text-sm text-medium text-gray">Hace 1h</span>
                 </a>
               </div>
               <div class="action-buttons">
-                <button class="btn btn-success" id="realizar-pedido-btn4">Realizar pedido</button>
+                <button class="btn btn-dark" onclick="realizarPedido('The Strokes - Is This It', 7)">Realizar pedido</button>
                 <button class="btn btn-dark" onclick="location.href='Supplierorders.html'">Modificar</button>
-                <button class="btn btn-dark">Cancelar</button>
               </div>
             </div>
-
-            <script>
-              document.getElementById('realizar-pedido-btn3').addEventListener('click', function() {
-                const contenido = `El álbum "OK Computer" de Radiohead ha tenido un incremento en ventas esta semana. 
-                Se solicita un ebarque de 10 unidades para Stock`;
-            
-                const blob = new Blob([contenido], { type: 'text/plain' });
-                const url = URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = 'pedido.txt';
-                document.body.appendChild(a);
-                a.click();
-                document.body.removeChild(a);
-                URL.revokeObjectURL(url);
-              });
-
-              document.getElementById('realizar-pedido-btn4').addEventListener('click', function() {
-                const contenido = `Solo quedan 3 unidades en stock del álbum "Is This It" de The Strokes. Se solicita un ebarque de 7 unidades para stock.`;
-            
-                const blob = new Blob([contenido], { type: 'text/plain' });
-                const url = URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = 'pedido.txt';
-                document.body.appendChild(a);
-                a.click();
-                document.body.removeChild(a);
-                URL.revokeObjectURL(url);
-              });
-
-            </script>
-            
+          
             <div class="single-notification">
               <div class="checkbox">
                 <div class="form-check checkbox-style">
@@ -613,13 +527,45 @@
                 </a>
               </div>
               <div class="action-buttons">
-                <button class="btn btn-success" onclick="location.href='Supplierorders.html'">Realizar pedido</button>
-                <button class="btn btn-dark">Modificar</button>
-                <button class="btn btn-dark">Cancelar</button>
+                <button class="btn btn-dark" onclick="realizarPedido('Radiohead - In Rainbows', 10)">Realizar pedido</button>
+                <button class="btn btn-dark" onclick="location.href='Supplierorders.html'">Modificar</button>
               </div>
             </div>
           </div>
           
+          <script>
+            const proveedores = [
+              { nombre: "Distribuidora Tech", contacto: "contacto@tech.com", calificacion: 4.8 },
+              { nombre: "Electro Suministros", contacto: "info@electrosum.com", calificacion: 4.5 },
+              { nombre: "Innovatec", contacto: "ventas@innovatec.com", calificacion: 4.2 },
+              { nombre: "Componentes Plus", contacto: "support@complus.com", calificacion: 4.0 },
+              { nombre: "Mayorista Global", contacto: "global@mayorista.com", calificacion: 3.8 }
+            ];
+          
+            function realizarPedido(producto, cantidad) {
+              let opciones = proveedores.map((p, index) => `${index + 1}. ${p.nombre} (Calificación: ${p.calificacion})`).join("\n");
+              let seleccion = prompt(`Seleccione un proveedor:\n${opciones}`);
+          
+              if (!seleccion || isNaN(seleccion) || seleccion < 1 || seleccion > proveedores.length) {
+                alert("Selección inválida. Pedido cancelado.");
+                return;
+              }
+          
+              let proveedor = proveedores[seleccion - 1];
+              let contenido = `Buenas tardes ${proveedor.nombre},\n\nPor medio del presente correo, le solicito ${cantidad} unidades del producto: ${producto}.\n\nFavor de contactarme en ${proveedor.contacto}.\n\nSaludos cordiales desde SpinRecords.`;
+          
+              const blob = new Blob([contenido], { type: 'text/plain' });
+              const url = URL.createObjectURL(blob);
+              const a = document.createElement('a');
+              a.href = url;
+              a.download = `Pedido_${producto.replace(/\s+/g, '_')}.txt`;
+              document.body.appendChild(a);
+              a.click();
+              document.body.removeChild(a);
+              URL.revokeObjectURL(url);
+            }
+          </script>
+                    
           <style>
             .notification-container {
               display: flex;
